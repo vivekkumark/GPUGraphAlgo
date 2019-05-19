@@ -1,1 +1,1 @@
- *.cu linguist-language=Cuda
+ *.* linguist-language=CUDA
