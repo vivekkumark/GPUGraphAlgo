@@ -1,0 +1,30 @@
+
+if [ -z != $1 ] 
+then
+	exename=$1
+fi
+
+# To show reg usage 	= 	--ptxas-options=-v
+# To Disable the cache  =	-Xptxas -dlcm=cg
+# To enable Dynamic P	=	-rdc=true -lcudadevrt
+
+COPT="--disable-warnings -Xptxas -dlcm=cg -gencode arch=compute_20,code=sm_20 -O3"
+
+
+exename="r_dmr.exe"
+
+echo Compiling $exename
+	nvcc $COPT -o $exename dmr.cu
+	
+exename="m_dmr_a.exe"
+echo Compiling $exename
+	nvcc -D MKER -D ENABLE_ATOMIC_MARKING $COPT -o $exename dmr.cu
+		
+exename="m_dmr.exe"
+echo Compiling $exename
+	nvcc -D MKER $COPT -o $exename dmr.cu
+
+exename="m_dmr_LB.exe"
+echo Compiling $exename
+	nvcc -D MKER -D ENABLE_POST_WORK $COPT -o $exename dmr.cu
+	

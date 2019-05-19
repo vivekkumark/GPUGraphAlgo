@@ -1,0 +1,13 @@
+exename="d_"
+
+if [ -z != $1 ] 
+then
+	exename=$1
+fi
+
+echo Compiling $exename"dmr.exe"
+nvcc -Xptxas -dlcm=cg -arch=sm_35 -O3 -o $exename"dmr.exe" d_dmr.cu
+
+
+echo Compiling $exename"dmr_lb.exe"
+nvcc -Xptxas -dlcm=cg -arch=sm_35 -O3 -o $exename"dmr_lb.exe" -D LB d_dmr.cu

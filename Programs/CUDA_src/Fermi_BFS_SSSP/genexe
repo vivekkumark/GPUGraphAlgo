@@ -1,0 +1,34 @@
+
+
+if [ -z != $1 ] 
+then
+	exename=$1
+fi
+
+#-Xptxas -dlcm=cg 
+
+OPT="--disable-warnings -arch=sm_20 -O3"
+
+#-------------------------------------------------------------------------------------#
+
+exename="n_"
+
+FLAG="-D NO_ATOMIC_KERNEL"
+
+echo Compiling $exename"bfs.exe"
+nvcc $FLAG $OPT  -o $exename"bfs.exe" bfs_sssp.cu
+
+echo Compiling $exename"sssp.exe"
+nvcc -D SSSP $FLAG $OPT  -o $exename"sssp.exe" bfs_sssp.cu
+
+#-------------------------------------------------------------------------------------#
+
+exename="na_"
+
+FLAG=""
+
+echo Compiling $exename"bfs.exe"
+nvcc $FLAG $OPT  -o $exename"bfs.exe" bfs_sssp.cu
+
+echo Compiling $exename"sssp.exe"
+nvcc -D SSSP $FLAG $OPT  -o $exename"sssp.exe" bfs_sssp.cu

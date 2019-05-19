@@ -1,0 +1,47 @@
+path='/home/mas/11/secvvek/'
+
+
+exename[0]='n_bfs.exe'
+exename[1]='na_bfs.exe'
+exename[2]='n_sssp.exe'
+exename[3]='na_sssp.exe'
+
+
+gfname[0]='rmat20.gr'
+gfname[1]='webs.gr'
+
+#echo ${#exename[@]} 
+#echo ${#gfname[@]}
+
+for((k=0;k<${#exename[@]};k++))
+do
+	for((j=0;j<${#gfname[@]};j++));
+	do
+		for((i=1;i<=40;i++));
+		do	
+			echo -------------------------------------------------${exename[k]} ${gfname[j]} i=$i			
+			gname=$path${gfname[j]}
+			./${exename[k]} $gname $i 
+		done
+	done
+done
+
+#for various bucket size
+bucket[0]=2;
+bucket[1]=5;
+bucket[2]=10;
+bucket[3]=15;
+
+
+for((k=0;k<${#exename[@]};k++))
+do
+	for((j=0;j<${#gfname[@]};j++));
+	do
+		for((b=0;b<${#bucket[@]};b++))
+		do	
+			echo -------------------------------------------------${exename[k]} ${gfname[j]} -1 ${bucket[b]}		
+			gname=$path${gfname[j]}
+			./${exename[k]} $gname -1 ${bucket[b]}
+		done
+	done
+done

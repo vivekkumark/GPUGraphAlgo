@@ -1,0 +1,36 @@
+path='/home/mas/11/secvvek/'
+
+
+exename[0]='r_dmr.exe'
+exename[1]='m_dmr_a.exe'
+exename[2]='m_dmr.exe'
+exename[3]='m_dmr_LB.exe'
+
+gfname[0]='N5L.1'
+gfname[1]='N11L.1'
+gfname[2]='N56L.1'
+
+#gfname[0]='N3k.1'
+#gfname[1]='N6k.1'
+#gfname[2]='N11k.1'
+#gfname[3]='N50k.1'
+#gfname[4]='N5L.1'
+#gfname[5]='N11L.1'
+#gfname[6]='N56L.1'
+
+#echo ${#exename[@]} 
+#echo ${#gfname[@]}
+
+for((j=0;j<${#gfname[@]};j++));
+do
+	for((k=0;k<${#exename[@]};k++));
+	do
+		for((i=1;i<=1;i++));
+		do	
+			echo -------------------------------------------------${exename[k]} ${gfname[j]} i=$i			
+			gname=$path${gfname[j]}
+			./${exename[k]} $gname 
+		done
+	done
+done
+
